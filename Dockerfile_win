@@ -13,7 +13,7 @@ ARG SA_PASSWORD
 ENV SA_PASSWORD=$SA_PASSWORD
 ENV DB_NAME=$DB_NAME
 ENV DB_USER=$DB_USER
-ARG SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/raw/master/Empty%20databases/openIMIS_ONLINE.sql"
+ARG SQL_SCRIPT_URL
 ADD $SQL_SCRIPT_URL ./openIMIS_ONLINE.sql
 COPY script/create_database.bat /create_database.bat
 COPY script/create_user_db.bat /create_user_db.bat
