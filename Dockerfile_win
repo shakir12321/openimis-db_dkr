@@ -1,0 +1,19 @@
+ARG WINDOWS_VERSION="2017-CU1"
+ARG WINDOWS_BASE="microsoft/mssql-server-windows-express"
+ARG OPENIMIS_VERSION="1.4.1" 
+FROM "${WINDOWS_BASE}:${WINDOWS_VERSION}"
+LABEL vendor="openIMIS"\
+      maintainer="Patrick Delcroix <patrick.delcroix@swisspth.ch>"\
+	  org.openimis.db.is-beta= \
+      org.openimis.db.is-production="" \
+      org.openimis.db.version="${OPENIMIS_VERSION}" 
+ARG ACCEPT_EULA
+ENV ACCEPT_EULA=$ACCEPT_EULA
+ARG SA_PASSWORD
+ENV SA_PASSWORD=$SA_PASSWORD
+ENV DB_NAME=$DB_NAME
+ENV DB_USER=$DB_USER
+ARG SQL_SCRIPT_URL
+ADD $SQL_SCRIPT_URL ./openIMIS_ONLINE.sql
+COPY script/create_database.bat /create_database.bat
+COPY script/create_user_db.bat /create_user_db.bat

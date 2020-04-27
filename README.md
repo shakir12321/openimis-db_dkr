@@ -4,6 +4,8 @@
 | --- |
 | This repository provides a dockerized openIMIS database. It provides a quick setup for development, testing or demoing. ***It is NOT INTENDED FOR PRODUCTION USE.*** |
 
+Please look for the directions on the openIMIS Wiki: https://openimis.atlassian.net/wiki/spaces/OP/pages/963182705/MO1.1+Install+the+modular+openIMIS+using+Docker
+
 Using the provided docker file, you can build a docker image running a SQL Server 2017, with a restored openIMIS backup database.
 This is done by giving the following ARGs to the docker build command:
 ```
