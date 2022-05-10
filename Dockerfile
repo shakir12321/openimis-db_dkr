@@ -3,10 +3,14 @@ ARG ACCEPT_EULA
 ENV ACCEPT_EULA=$ACCEPT_EULA
 ARG SA_PASSWORD
 ENV SA_PASSWORD=$SA_PASSWORD
+ENV DB_USER_PASSWORD=$SA_PASSWORD
 ENV DB_NAME=IMIS
 ENV DB_USER=IMISUser
-ARG SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/releases/download/v1.7.0-rc0/sql-files-v1.7.0-rc0.zip"
+RUN mkdir -p /app
+COPY script/* /app
+WORKDIR /app
+
+ARG SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/releases/latest/download/sql-files.zip"
 RUN wget $SQL_SCRIPT_URL -O /sql-files.zip
-COPY script/* /
-RUN apt-get update && apt-get install unzip -y
-RUN unzip /sql-files.zip -d /
+RUN apt-get update && apt-get install unzip -y && rm -rf /var/lib/apt/lists/* && unzip /sql-files.zip -d /app
+CMD /bin/bash ./entrypoint.sh
