@@ -7,7 +7,7 @@ ENV DB_USER_PASSWORD=$SA_PASSWORD
 ENV DB_NAME=IMIS
 ENV DB_USER=IMISUser
 RUN mkdir -p /app
-COPY script/* /app
+COPY script/* /app/
 WORKDIR /app
 
 ARG SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/releases/latest/download/sql-files.zip"
