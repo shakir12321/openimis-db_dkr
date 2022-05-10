@@ -13,4 +13,5 @@ WORKDIR /app
 ARG SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/releases/latest/download/sql-files.zip"
 RUN wget $SQL_SCRIPT_URL -O /sql-files.zip
 RUN apt-get update && apt-get install unzip -y && rm -rf /var/lib/apt/lists/* && unzip /sql-files.zip -d /app
+RUN chmod a+x /app/*.sh
 CMD /bin/bash ./entrypoint.sh
