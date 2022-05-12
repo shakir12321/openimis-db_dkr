@@ -2,7 +2,7 @@
 
 
 # Wait to be sure that SQL Server came up
-sleep 30s
+sleep 60s
 
 
 # DATABSE initialisation
