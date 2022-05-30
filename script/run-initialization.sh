@@ -2,7 +2,7 @@
 
 
 # Wait to be sure that SQL Server came up
-sleep 30s
+sleep 60s
 
 
 # DATABSE initialisation
@@ -23,7 +23,7 @@ if [ ${data} -eq "0" ]; then
         /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -i /app/fullDemoDatabase.sql -d $DB_NAME | grep . | uniq -c
 
         echo ' give to the user the access to the database'
-        /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q "CREATE USER $DB_USER FOR LOGIN $DB_USER " -d $DB_NAME
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q "EXEC sp_changedbowner '$DB_USER'" -d $DB_NAME
 else
         echo "database already existing, nothing to do"
 fi
