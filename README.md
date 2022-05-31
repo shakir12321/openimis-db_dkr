@@ -12,9 +12,16 @@ This is done by giving the following ARGs to the docker build command:
 docker build \
   --build-arg ACCEPT_EULA=Y \
   --build-arg SA_PASSWORD=<your secret password> \
-  --build-arg SQL_SCRIPT_URL=<url to the sql script to create the database> \
+  --build-arg DB_USER_PASSWORD
+  --build-arg DB_USER
+  --build-arg DB_NAME
   . \
   -t openimis-db
+```
+
+optinnaly 
+```
+--build-arg SQL_SCRIPT_URL=<url to the sql script to create the database> \
 ```
 ***Notes***:
 * by setting the ACCEPT_EULA=Y, you explicitely accept [Microsoft EULA](https://go.microsoft.com/fwlink/?linkid=857698) for the dockerized SQL Server 2017. Please ensure you read it and use the provided software according to the terms of that license.
