@@ -10,10 +10,12 @@ sleep 60s
 echo "Database initialisaton"
 # if the table does not exsit it will create the table
 
-
 # get "1" if the database exist : tr get only the integer, cut only the first integer (the second is the number of row affected)
 data=$(/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q "SELECT COUNT(*)  FROM master.dbo.sysdatabases WHERE name = N'$DB_NAME'" | tr -dc '0-9'| cut -c1 )
 if [ ${data} -eq "0" ]; then
+        echo 'download full demo database'
+        wget $SQL_SCRIPT_URL -O /sql-files.zip 
+        unzip /sql-files.zip -d /app
         echo 'create database user'
         /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q "CREATE LOGIN $DB_USER WITH PASSWORD='${SA_PASSWORD}', CHECK_POLICY = OFF"
 
