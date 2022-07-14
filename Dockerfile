@@ -10,7 +10,7 @@ RUN mkdir -p /app
 COPY script/* /app/
 WORKDIR /app
 
-ARG SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/releases/latest/download/sql-files.zip"
+ENV SQL_SCRIPT_URL="https://github.com/openimis/database_ms_sqlserver/releases/latest/download/sql-files.zip"
 RUN apt-get update && apt-get install unzip -y && rm -rf /var/lib/apt/lists/*
 RUN chmod a+x /app/*.sh
 CMD /bin/bash ./entrypoint.sh
