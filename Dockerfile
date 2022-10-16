@@ -28,7 +28,7 @@ RUN apt-get update
 
 
 # Installs SQL drivers and tools
-RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev
+#RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev
 
 # Installs MS SQL Tools
 RUN ACCEPT_EULA=Y apt-get install -y mssql-tools
